@@ -1,0 +1,50 @@
+Đặt ra roadmap trở thành pro backend  (java)
+A. Spring
+1. Unit test junit , mockito  -> không cần doc hóa (huy )
+2. Hibernate :
+    + Kiến trúc hibernate ntn  (first level cache  --> third level cache ntn ??? ) // ok
+    + First level cache : Nó hoạt động ntn , cơ chế flush cache có lquan gì đến session , transactional của hibernate
+   -> Lab1  : Demo cách thức hoạt động của 1 level cache (enable show sql của hibernate )
+    + Cùng 1 câu truy vấn demo TH mà chỉ truy vấn 1 lần mà các lần sau hibernate ko thực hiện truy vấn lại.
+    + Các trường hợp  first level cache không hoạt động (vd search list .....) 
+    + Các trường hợp transaction mong muốn đã kết thúc nhưng hibernate không flush object cache -> leak memory 
+   -> Dựng bài lab và doc hóa lại , tổng hợp và đức rút ra kn .
+    + Seccon level cache  : Tương tự như trên .
+    + AuditingConfig trong hibernate 
+  Lưu ý  : chỉ có thực hành lab thật kỹ  -> rút ra dc kinh nghiệm 
+3. Jpa
+   + Projection interface
+   + Store procedure
+  // Mô tả rõ usecase và ưu nhược điểm của các xử lý .
+4. Aspect programing  
+    + Setup aspect log
+    + Setup logback 
+5. Custom exception trong spring ntn  
+6. Async trong spring
+7. Thiết kế api theo chuẩn restfull ntn  
+8. Sử dụng message resource trong spring để support đa ngôn ngữ
+9. Validate enum field của dto bằng custom class reflecttion .
+10. Vấn đề của hibernate khi batch insert
+   - Mong muốn khi insert list luôn là insert batch với batch  size phù hợp -> hibernate ko phải lúc nào cũng hd hiệu quả
+(gọi saveAll nhưng thực ra là save từng phần tử )  -> solution thực thi câu sql thuần bên trong entityManager
+(lưu ý flush mỗi khi executeBatch , nếu ko sẽ leak mem )
+11. Bind dto với entiy hay các class với nhau thông qua thư viện mapstruct , modelMapper (chú ý chỗ cao tải)
+12. Sử dụng thư viện liquidBase , flyway để version hóa schema db
+13. Sử dụng jdbcTemplate và các vđề cần lưu ý
+14. Spring reactive trong spring (Mono , stream  ...)
+B. Java core nâng cao
+1 - Memleak , cao tải và các phương pháp xử lý
+ + Phương pháp tìm ra nguyên nhân  : jvisual , jprofile , tool monitoring  (prometheus ....)
+  -> Khoanh vùng dc nguyên nhân (do đoạn code nào gây ra ....)
+ + Cao tải nhìn rõ khi mà có lượng băng thông đủ lớn  -> tool test performance (jmeter)
+ + Liệt kê ra 1 số trường hợp gây ra cao tải , leak memory hay gặp (có các bài lab để trực quan hóa )
+2. Coding convention
+3. Đa luồng , đồng bộ hóa các luồng ntn  , tránh race condition ntn  ??? ... , dùng callable , executorService ...
+  Thực hiện bài lab thể hiện việc sử dụng đa luồng tối ưu hóa ntn  ??? (chẳng hạn như th download file lớn lấy dữ liệu từ db)
+C Database 
+1. Setup hạ tầng db ntn  : vcs setup các tham số khi chạy image mysql , mariadb để db hoạt động hiệu quả
+2. Tracing slow query trong db
+3. Các loại storage engine trong db  (myisam  , innodb ) sự khác nhau ntn  (chủ yêu lquan đến cơ chế locking ntn  )
+D. Công nghệ khác
+1. Monitoring (Prometheus , grafana , kibana)
+2. Elastic search
